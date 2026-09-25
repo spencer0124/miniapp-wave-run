@@ -71,8 +71,20 @@ runner, and the wave breaking over a runner it catches.
 The bus's three heights are derived from its hitboxes and the runner's, so
 they keep their meaning if the art changes; tests pin low/mid/high.
 
+## Deploy
+
+- **Live:** https://wave-run.mini.skkuverse.com (Cloudflare Pages project
+  `miniapp-wave-run`, also at https://miniapp-wave-run.pages.dev). A push to
+  `main` deploys production; any other branch (`dev`) gets a preview deploy.
+  Build: `pnpm build` → `apps/webview/dist`, `PNPM_VERSION=11.20.0`.
+- **Registered** in skkuverse-server as `wave-run`: `src/miniapps/index.json`
+  (🏄, order 11), `src/miniapps/details/wave-run.json` (shell bar `top`, so the
+  bottom bar stays off the touch zones), and `WAVE_RUN_MINIAPP_ORIGIN` in
+  `src/infra/origins.ts`'s `BRIDGE_ORIGINS`, which is what lets `web:haptic`
+  through. The app itself needs no release; it reads `GET /miniapps`.
+
+How all of this was set up: `NEW-MINIAPP.md` in the parent `miniapp/` folder.
+
 ## Not done yet
 
-Registering the mini app with skkuverse-server, the Cloudflare Pages deploy, the
-origin allowlist for the bridge (haptics are no-ops until then), and Google
-sign-in with a leaderboard.
+Google sign-in with a leaderboard.
