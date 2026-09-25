@@ -1,6 +1,5 @@
 packages:
   - "apps/*"
-  - "packages/*"
 
 # pnpm blocks dependency install scripts until each is named here. esbuild is
 # Vite's bundler and its script links the platform binary, so Vite cannot run
@@ -14,3 +13,7 @@ allowBuilds:
 # package.json.
 catalog:
   typescript: ^5.9.3
+
+minimumReleaseAgeExclude:
+  - '@skkuverse/miniapp@0.2.0'
+  - '@skkuverse/tokens@0.1.0'

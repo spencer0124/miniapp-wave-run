@@ -20,9 +20,9 @@ importers:
 
   apps/webview:
     dependencies:
-      '@skkuverse/bridge':
-        specifier: workspace:*
-        version: link:../../packages/bridge
+      '@skkuverse/miniapp':
+        specifier: ^0.2.0
+        version: 0.2.0(react@19.3.0)
       react:
         specifier: ^19.1.0
         version: 19.3.0
@@ -48,12 +48,6 @@ importers:
       vitest:
         specifier: ^3.2.4
         version: 3.2.7
-
-  packages/bridge:
-    devDependencies:
-      typescript:
-        specifier: 'catalog:'
-        version: 5.9.3
 
 packages:
 
@@ -459,6 +453,20 @@ packages:
     resolution: {integrity: sha512-Erx822VRBwLa124shbj+wNXe//BOgMEctDV0m1aqTQdNO1S69DgNUCFKC1RCeZfixs1J31l6igk1ziyXErbigQ==}
     cpu: [x64]
     os: [win32]
+
+  '@skkuverse/miniapp@0.2.0':
+    resolution: {integrity: sha512-X7kCmv8advT9mcthK2uWFlR/P9ZDcxV4DbXd84Bn3wWT/h1GuT1ygAWeuAhCyamOzLxBML7qL2pKsVQCcdtrHQ==}
+    peerDependencies:
+      '@skkuverse/ui': ^0.1.0
+      react: '>=19'
+    peerDependenciesMeta:
+      '@skkuverse/ui':
+        optional: true
+      react:
+        optional: true
+
+  '@skkuverse/tokens@0.1.0':
+    resolution: {integrity: sha512-579PJd0THQN1hBcHMm0eYwalbq7aGKXeJr3pvKCJ53HqIT3AfW6T/wjt4+ITe1rLoWUXOW14sB0EJ4ngzfgSlA==}
 
   '@turbo/darwin-64@2.11.3':
     resolution: {integrity: sha512-D4EIKTgPpxFQL5aZNbNqy57XOiRldM+mwP1ME9ZLM4DJoV3oNK7GKyQWVusz1umjiFNmLvunNGw7Jq4RUyYL3A==}
@@ -1146,6 +1154,14 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.63.4':
     optional: true
+
+  '@skkuverse/miniapp@0.2.0(react@19.3.0)':
+    dependencies:
+      '@skkuverse/tokens': 0.1.0
+    optionalDependencies:
+      react: 19.3.0
+
+  '@skkuverse/tokens@0.1.0': {}
 
   '@turbo/darwin-64@2.11.3':
     optional: true

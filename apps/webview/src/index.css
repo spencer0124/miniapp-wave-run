@@ -85,7 +85,7 @@ body {
 }
 
 .sky {
-  top: calc(env(safe-area-inset-top) + 9%);
+  top: calc(var(--sv-inset-top, env(safe-area-inset-top, 0px)) + 9%);
   padding: 0 24px;
   display: flex;
   flex-direction: column;
@@ -94,7 +94,7 @@ body {
 
 .field {
   top: calc(var(--ground) + 28px);
-  bottom: calc(var(--dock) + env(safe-area-inset-bottom));
+  bottom: calc(var(--dock) + var(--sv-inset-bottom, env(safe-area-inset-bottom, 0px)));
   padding: 0 16px;
   display: flex;
   flex-direction: column;
