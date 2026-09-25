@@ -85,8 +85,10 @@ they keep their meaning if the art changes; tests pin low/mid/high.
   `src/infra/origins.ts`'s `BRIDGE_ORIGINS`, which is what lets `web:haptic`
   through. The app itself needs no release; it reads `GET /miniapps`.
 - **Shell manifest:** `apps/webview/public/skkuverse.json` declares the rest of
-  the shell (`header: overlay`, `statusBar: light`, `background: #073E32`) —
-  skkuverse-server fetches it and merges it over the registry entry above.
+  the shell (`header: opaque`, `statusBar: dark`, `background: #073E32` — the
+  page paints below the opaque native header today, unchanged; `background`
+  only shows while loading or on overscroll) — skkuverse-server fetches it and
+  merges it over the registry entry above.
 
 How all of this was set up: `NEW-MINIAPP.md` in the parent `miniapp/` folder.
 
