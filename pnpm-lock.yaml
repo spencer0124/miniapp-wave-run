@@ -21,8 +21,8 @@ importers:
   apps/webview:
     dependencies:
       '@skkuverse/miniapp':
-        specifier: ^0.2.0
-        version: 0.2.0(react@19.3.0)
+        specifier: ^0.2.1
+        version: 0.2.1(react@19.3.0)
       react:
         specifier: ^19.1.0
         version: 19.3.0
@@ -454,10 +454,10 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@skkuverse/miniapp@0.2.0':
-    resolution: {integrity: sha512-X7kCmv8advT9mcthK2uWFlR/P9ZDcxV4DbXd84Bn3wWT/h1GuT1ygAWeuAhCyamOzLxBML7qL2pKsVQCcdtrHQ==}
+  '@skkuverse/miniapp@0.2.1':
+    resolution: {integrity: sha512-YGoSTqDr3tToZUixGQ8+3o2r5QaFEiOB2kTzhgoLfrIg/HI7ZBF/suhs/7kCnPY6ThlBj0vjkMz59iuqdZNP5A==}
     peerDependencies:
-      '@skkuverse/ui': ^0.1.0
+      '@skkuverse/ui': ^0.1.1
       react: '>=19'
     peerDependenciesMeta:
       '@skkuverse/ui':
@@ -1155,7 +1155,7 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.63.4':
     optional: true
 
-  '@skkuverse/miniapp@0.2.0(react@19.3.0)':
+  '@skkuverse/miniapp@0.2.1(react@19.3.0)':
     dependencies:
       '@skkuverse/tokens': 0.1.0
     optionalDependencies:

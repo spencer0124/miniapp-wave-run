@@ -15,5 +15,4 @@ catalog:
   typescript: ^5.9.3
 
 minimumReleaseAgeExclude:
-  - '@skkuverse/miniapp@0.2.0'
-  - '@skkuverse/tokens@0.1.0'
+  - '@skkuverse/*'
