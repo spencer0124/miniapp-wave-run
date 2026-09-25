@@ -1,0 +1,16 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# pnpm blocks dependency install scripts until each is named here. esbuild is
+# Vite's bundler and its script links the platform binary, so Vite cannot run
+# without it. Approve additions one at a time rather than blanket-enabling —
+# the prompt is the point.
+allowBuilds:
+  esbuild: true
+
+# One version per tool across the workspace. Members reference these with
+# `"typescript": "catalog:"`, so a bump happens here rather than in every
+# package.json.
+catalog:
+  typescript: ^5.9.3

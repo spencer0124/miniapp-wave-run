@@ -1,0 +1,27 @@
+{
+  "name": "@skkuverse/wave-run",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "art": "node scripts/skyline-art.mjs",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@skkuverse/bridge": "workspace:*",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^4.4.1",
+    "typescript": "catalog:",
+    "vite": "^6.3.0",
+    "vitest": "^3.2.4"
+  }
+}

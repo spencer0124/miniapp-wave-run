@@ -1,0 +1,10 @@
+# Serve the SPA shell for any path the build did not emit a file for, so a deep
+# link and a reload both reach the router instead of the host's 404.
+#
+# Cloudflare Pages already does this when a project ships no 404.html, which this
+# one does not, so the rule pins behaviour that is currently a default rather
+# than adding any. Worth having anyway: the default disappears the moment anyone
+# adds a 404.html, and nothing about that change would look related to routing.
+#
+# Static files still win — Pages serves an existing file before consulting this.
+/*    /index.html   200

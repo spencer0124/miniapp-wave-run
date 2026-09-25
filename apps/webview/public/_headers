@@ -1,0 +1,31 @@
+# Asset filenames carry a content hash, so a given URL's bytes never change and
+# the browser never needs to ask again.
+#
+# This is not only a performance rule. Because the SPA fallback answers any
+# unmatched path with index.html at HTTP 200, a request for an asset that a newer
+# deploy has replaced comes back as HTML rather than 404, and a browser can cache
+# that HTML as the valid response for a .js or .css URL. Pinning the hashed
+# assets keeps that window as small as the deploy itself.
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# There is deliberately no rule for the shell. Two facts rule it out, both
+# checked against a Pages preview deployment rather than assumed:
+#
+# 1. Matching it is not possible without hitting the assets. The shell is served
+#    at every non-asset path by the SPA fallback, so the only pattern covering it
+#    is /*, and rules here are additive: "if a header is applied twice in the
+#    _headers file, the values are joined with a comma separator". A /* no-cache
+#    rule plus the block above emits
+#      Cache-Control: no-cache, public, max-age=31536000, immutable
+#    on every asset, which is self-contradictory. A literal /index.html rule
+#    avoids that but matches nothing, because Pages answers /index.html with a
+#    308 to /.
+#
+# 2. It would buy nothing today. Pages already sends
+#    `public, max-age=0, must-revalidate` for the shell, which forces the
+#    revalidation this rule would ask for.
+#
+# The exposure that leaves: if that default ever changes, a cached shell could
+# outlive the hashes it names, and nothing here would catch it.

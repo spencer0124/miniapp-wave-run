@@ -1,0 +1,278 @@
+@font-face {
+  font-family: 'WantedSans';
+  src: url('./fonts/WantedSans-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'WantedSans';
+  src: url('./fonts/WantedSans-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  --deep: #073e32;
+  --deep-2: #0b5542;
+  --green: #18a866;
+  --lime: #9bea65;
+  --lime-2: #c7f37a;
+  --mint: #f2f8e9;
+  /* Must match GROUND_RATIO in game/render/layout.ts. */
+  --ground: 58%;
+  /* The mini-app shell's bottom bar overlays the page by about this much. */
+  --dock: 66px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--deep);
+  color: var(--deep);
+  font-family: 'WantedSans', system-ui, -apple-system, sans-serif;
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+.page {
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+}
+
+/* A phone-width column; on a desktop the rest of the window stays deep green. */
+.stage {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  height: 100%;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  cursor: pointer;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+}
+
+/* Overlays never take the press; the stage underneath reads it as game input. */
+.sky,
+.field {
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  text-align: center;
+}
+
+.sky {
+  top: calc(env(safe-area-inset-top) + 9%);
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.field {
+  top: calc(var(--ground) + 28px);
+  bottom: calc(var(--dock) + env(safe-area-inset-bottom));
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  color: var(--mint);
+}
+
+.title .eyebrow {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--green);
+}
+
+.title h1 {
+  margin: 0;
+  font-size: clamp(40px, 13vw, 60px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--deep);
+}
+
+.title .sub {
+  margin: 10px 0 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--deep-2);
+}
+
+.title .best {
+  margin: 14px 0 0;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(7, 62, 50, 0.1);
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--deep-2);
+}
+
+.controls {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.zone {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.35;
+  /* Wrap Korean at word boundaries, never mid-word. */
+  word-break: keep-all;
+  opacity: 0.92;
+}
+
+.key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 2px solid rgba(242, 248, 233, 0.6);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.divider {
+  width: 0;
+  border-left: 2px dashed rgba(242, 248, 233, 0.35);
+}
+
+.blink {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  animation: blink 1.2s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* Must match HINT_MS in App.tsx. */
+.fade {
+  animation: fade-out 2.5s ease-in forwards;
+}
+
+@keyframes fade-out {
+  0%,
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.card {
+  min-width: 240px;
+  padding: 20px 24px 22px;
+  border-radius: 22px;
+  background: rgba(3, 33, 26, 0.82);
+  color: var(--mint);
+  box-shadow: 0 0 0 2px rgba(155, 234, 101, 0.35), 0 12px 40px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.card-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.card-sub {
+  margin: 6px 0 0;
+  font-size: 14px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.85;
+}
+
+.score {
+  margin: 8px 0 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--lime-2);
+}
+
+.new {
+  margin-left: 8px;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: var(--lime);
+  color: var(--deep);
+  font-size: 11px;
+  font-weight: 700;
+  vertical-align: 1px;
+}
+
+.again {
+  pointer-events: auto;
+  margin-top: 18px;
+  width: 100%;
+  height: 48px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--lime);
+  color: var(--deep);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  animation: appear 0.7s steps(1, end);
+}
+
+/* Matches RESTART_DELAY_MS: the button shows up when a press would work. */
+@keyframes appear {
+  from {
+    visibility: hidden;
+  }
+}
+
+.again:active {
+  transform: scale(0.98);
+}
