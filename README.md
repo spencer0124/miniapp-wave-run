@@ -14,8 +14,10 @@ pnpm --filter @skkuverse/wave-run art   # regenerate the skyline PNGs
 ```
 
 Node 22 (`.nvmrc`), pnpm 11. Same workspace shape as the other miniapps:
-`apps/webview` is the game, `packages/bridge` is a byte-for-byte copy of
-skkuverse-app's bridge contract.
+`apps/webview` is the game. The app bridge is not copied — it comes from npm
+as `@skkuverse/miniapp`, published from
+[spencer0124/skkuverse-miniapp](https://github.com/spencer0124/skkuverse-miniapp),
+which owns the protocol.
 
 ## Controls
 
@@ -82,6 +84,9 @@ they keep their meaning if the art changes; tests pin low/mid/high.
   bottom bar stays off the touch zones), and `WAVE_RUN_MINIAPP_ORIGIN` in
   `src/infra/origins.ts`'s `BRIDGE_ORIGINS`, which is what lets `web:haptic`
   through. The app itself needs no release; it reads `GET /miniapps`.
+- **Shell manifest:** `apps/webview/public/skkuverse.json` declares the rest of
+  the shell (`header: overlay`, `statusBar: light`, `background: #073E32`) —
+  skkuverse-server fetches it and merges it over the registry entry above.
 
 How all of this was set up: `NEW-MINIAPP.md` in the parent `miniapp/` folder.
 
